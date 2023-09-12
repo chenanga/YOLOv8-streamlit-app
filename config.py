@@ -3,8 +3,8 @@
 """
 -------------------------------------------------
    @File Name:     config.py
-   @Author:        Luyao.zhang
-   @Date:          2023/5/16
+   @Author:        ang
+   @Date:          2023/9/12
    @Description: configuration file
 -------------------------------------------------
 """
@@ -31,6 +31,9 @@ SOURCES_LIST = ["Image", "Video", "Webcam"]
 
 # DL model config
 DETECTION_MODEL_DIR = ROOT / 'weights' / 'detection'
+SEGMENT_MODEL_DIR = ROOT / 'weights' / 'segment'
+POSE_MODEL_DIR = ROOT / 'weights' / 'pose'
+
 YOLOv8n = DETECTION_MODEL_DIR / "yolov8n.pt"
 YOLOv8s = DETECTION_MODEL_DIR / "yolov8s.pt"
 YOLOv8m = DETECTION_MODEL_DIR / "yolov8m.pt"
@@ -43,3 +46,17 @@ DETECTION_MODEL_LIST = [
     "yolov8m.pt",
     "yolov8l.pt",
     "yolov8x.pt"]
+
+SEGMENT_MODEL_LIST = [
+    "yolov8n-seg.pt",
+    "yolov8s-seg.pt",
+    "yolov8m-seg.pt",
+    "yolov8l-seg.pt",
+    "yolov8x-seg.pt"]
+
+POSE_MODEL_LIST = [
+    "yolov8n-pose.pt",
+    "yolov8s-pose.pt",
+    "yolov8m-pose.pt",
+    "yolov8l-pose.pt",
+    "yolov8x-pose.pt"]

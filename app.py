@@ -3,8 +3,8 @@
 """
 -------------------------------------------------
    @File Name:     app.py
-   @Author:        Luyao.zhang
-   @Date:          2023/5/15
+   @Author:        ang
+   @Date:          2023/9/12
    @Description:
 -------------------------------------------------
 """
@@ -32,24 +32,40 @@ st.sidebar.header("模型配置选择")
 # model options
 task_type = st.sidebar.selectbox(
     "任务类别选择",
-    ["检测"]
+    ["检测", "分割", "关键点"],
 )
 
 model_type = None
 if task_type == "检测":
     model_type = st.sidebar.selectbox(
-        "Select Model",
+        "选择模型",
         config.DETECTION_MODEL_LIST
+    )
+elif task_type == "分割":
+    model_type = st.sidebar.selectbox(
+        "选择模型",
+        config.SEGMENT_MODEL_LIST
+    )
+elif task_type == "关键点":
+    model_type = st.sidebar.selectbox(
+        "选择模型",
+        config.POSE_MODEL_LIST
     )
 else:
     st.error("Currently only 'Detection' function is implemented")
 
 confidence = float(st.sidebar.slider(
-    "Select Model Confidence", 30, 100, 50)) / 100
+    "置信度", 30, 100, 50)) / 100
 
 model_path = ""
 if model_type:
-    model_path = Path(config.DETECTION_MODEL_DIR, str(model_type))
+
+    if task_type == "检测":
+        model_path = Path(config.DETECTION_MODEL_DIR, str(model_type))
+    elif task_type == "分割":
+        model_path = Path(config.SEGMENT_MODEL_DIR, str(model_type))
+    elif task_type == "关键点":
+        model_path = Path(config.POSE_MODEL_DIR, str(model_type))
 else:
     st.error("Please Select Model in Sidebar")
 
